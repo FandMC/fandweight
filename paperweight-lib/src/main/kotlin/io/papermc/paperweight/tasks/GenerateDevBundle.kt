@@ -365,7 +365,7 @@ abstract class GenerateDevBundle : DefaultTask() {
 
         const val atFileName = "transform.at"
         const val reobfMappingsFileName = "$DEOBF_NAMESPACE-$SPIGOT_NAMESPACE-reobf.tiny"
-        const val mojangMappedPaperclipFileName = "leavesclip-$DEOBF_NAMESPACE.jar"
+        const val mojangMappedPaperclipFileName = "fandclip-$DEOBF_NAMESPACE.jar"
 
         // Should be bumped when the dev bundle config/contents changes in a way which will require users to update paperweight
         const val currentDataVersion = 5

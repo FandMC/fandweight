@@ -43,15 +43,15 @@ val sourcesJar by tasks.existing(AbstractArchiveTask::class) {
     }
 }
 
-val prefix = project.name.substringAfter("leavesweight-")
+val prefix = project.name.substringAfter("fandweight-")
 
 gradlePlugin {
-    website.set("https://github.com/LeavesMC/leavesweight")
-    vcsUrl.set("https://github.com/LeavesMC/leavesweight")
-    plugins.create("leavesweight-$prefix") {
-        id = "org.leavesmc.leavesweight.$prefix"
-        displayName = "leavesweight $prefix"
-        tags.set(listOf("paper", "leaves", "minecraft"))
+    website.set("https://github.com/FandMC/fandweight")
+    vcsUrl.set("https://github.com/FandMC/fandweight")
+    plugins.create("fandweight-$prefix") {
+        id = "com.fandmc.fandweight.$prefix"
+        displayName = "fandweight $prefix"
+        tags.set(listOf("paper", "leaves", "fand" ,"minecraft"))
     }
 }
 
@@ -102,10 +102,10 @@ publishing {
         }
 
         maven(url) {
-            name = "leaves"
+            name = "fand"
             credentials(PasswordCredentials::class) {
-                username = System.getenv("LEAVES_USERNAME")
-                password = System.getenv("LEAVES_PASSWORD")
+                username = System.getenv("FAND_USERNAME")
+                password = System.getenv("FANDS_PASSWORD")
             }
         }
     }
@@ -120,11 +120,11 @@ publishing {
 }
 
 fun MavenPom.pomConfig() {
-    val repoPath = "LeavesMC/leavesweight"
+    val repoPath = "FandMC/fandweight"
     val repoUrl = "https://github.com/$repoPath"
 
-    name.set("leavesweight")
-    description.set("Gradle plugin for the LeavesMC project")
+    name.set("fandweight")
+    description.set("Gradle plugin for the FandMC project")
     url.set(repoUrl)
     inceptionYear.set("2020")
 
@@ -143,15 +143,10 @@ fun MavenPom.pomConfig() {
 
     developers {
         developer {
-            id.set("DenWav")
-            name.set("Kyle Wood")
-            email.set("kyle@denwav.dev")
-            url.set("https://github.com/DenWav")
-        }
-        developer{
-            id.set("MC_XiaoHei")
-            name.set("MC_XiaoHei")
-            email.set("xiaohei.xor7studio@foxmail.com")
+            id.set("MC20018")
+            name.set("FandMC")
+            email.set("fand.20018@outlook.com")
+            url.set("https://github.com/FandMC")
         }
     }
 

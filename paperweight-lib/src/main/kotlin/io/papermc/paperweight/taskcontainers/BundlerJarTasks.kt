@@ -40,19 +40,19 @@ class BundlerJarTasks(
     private val mainClassString: Provider<String>,
 ) {
     val createBundlerJar: TaskProvider<CreateBundlerJar>
-    val createLeavesclipJar: TaskProvider<CreatePaperclipJar>
+    val createFandclipJar: TaskProvider<CreatePaperclipJar>
 
     val createReobfBundlerJar: TaskProvider<CreateBundlerJar>
-    val createReobfLeavesclipJar: TaskProvider<CreatePaperclipJar>
+    val createReobfFandclipJar: TaskProvider<CreatePaperclipJar>
 
     init {
-        val (createBundlerJar, createLeavesclipJar) = project.createBundlerJarTask("mojmap")
-        val (createReobfBundlerJar, createReobfLeavesclipJar) = project.createBundlerJarTask("reobf")
+        val (createBundlerJar, createFandclipJar) = project.createBundlerJarTask("mojmap")
+        val (createReobfBundlerJar, createReobfFandclipJar) = project.createBundlerJarTask("reobf")
         this.createBundlerJar = createBundlerJar
-        this.createLeavesclipJar = createLeavesclipJar
+        this.createFandclipJar = createFandclipJar
 
         this.createReobfBundlerJar = createReobfBundlerJar
-        this.createReobfLeavesclipJar = createReobfLeavesclipJar
+        this.createReobfFandclipJar = createReobfFandclipJar
     }
 
     fun configureBundlerTasks(
@@ -76,15 +76,15 @@ class BundlerJarTasks(
             reobfJar.flatMap { it.outputJar },
         )
 
-        createLeavesclipJar.configureWith(vanillaJar, createBundlerJar, mcVersion)
-        createReobfLeavesclipJar.configureWith(vanillaJar, createReobfBundlerJar, mcVersion)
+        createFandclipJar.configureWith(vanillaJar, createBundlerJar, mcVersion)
+        createReobfFandclipJar.configureWith(vanillaJar, createReobfBundlerJar, mcVersion)
     }
 
     private fun Project.createBundlerJarTask(
         classifier: String = "",
     ): Pair<TaskProvider<CreateBundlerJar>, TaskProvider<CreatePaperclipJar>> {
         val bundlerTaskName = "create${classifier.capitalized()}BundlerJar"
-        val paperclipTaskName = "create${classifier.capitalized()}LeavesclipJar"
+        val paperclipTaskName = "create${classifier.capitalized()}FandclipJar"
 
         val bundlerJarTask = tasks.register<CreateBundlerJar>(bundlerTaskName) {
             group = "paperweight"
@@ -97,10 +97,10 @@ class BundlerJarTasks(
         }
         val paperclipJarTask = tasks.register<CreatePaperclipJar>(paperclipTaskName) {
             group = "paperweight"
-            description = "Build a runnable leavesclip jar"
+            description = "Build a runnable fandclip jar"
 
             libraryChangesJson.set(bundlerJarTask.flatMap { it.libraryChangesJson })
-            outputZip.set(layout.buildDirectory.file("libs/${jarName("leavesclip", classifier)}"))
+            outputZip.set(layout.buildDirectory.file("libs/${jarName("fandclip", classifier)}"))
         }
         return bundlerJarTask to paperclipJarTask
     }
